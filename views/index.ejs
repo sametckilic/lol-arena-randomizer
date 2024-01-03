@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>League of Legends Takımları</title>
+    <style>
+      /* Basit CSS stilleri */
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .team {
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+      .player {
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>League of Legends Takım Oluşturma</h1>
+
+    <form action="/" method="post">
+      <h2>Oyuncu İsimleri</h2>
+      <% for (let i = 1; i <= 8; i++) { %>
+      <label for="player<%= i %>">Oyuncu <%= i %>:</label>
+      <input
+        type="text"
+        id="player<%= i %>"
+        name="playerNames"
+        required
+      /><br />
+      <% } %>
+      <br />
+      <input type="submit" value="Takımları Oluştur" />
+    </form>
+
+    <% if (teams) { %> <% for (let i = 0; i < teams.length; i++) { %>
+    <div class="team">
+      <h2>Takım <%= i + 1 %></h2>
+      <% for (let j = 0; j < teams[i].length; j++) { %>
+      <div class="player">
+        <strong><%= teams[i][j].player %></strong> - <%= teams[i][j].champion %>
+      </div>
+      <% } %>
+    </div>
+    <% } %> <% } %>
+  </body>
+</html>
